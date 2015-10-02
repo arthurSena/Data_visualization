@@ -1,0 +1,116 @@
+---
+title: "Elections"
+author: "Arthur"
+date: "02-10-2015"
+output: html_document
+---
+
+```{r}
+library(rCharts)
+library(ggplot2)
+library(dplyr)
+
+data <- read.csv("Data/1994/perfil_eleitorado_1994.txt",sep = ";", header = F)
+data1996 <- read.csv("Data/1996/perfil_eleitorado_1996.txt",sep = ";", header = F)
+data1998 <- read.csv("Data/1998/perfil_eleitorado_1998.txt",sep = ";", header = F)
+data2000 <- read.csv("Data/2000/perfil_eleitorado_2000.txt",sep = ";", header = F)
+data2002 <- read.csv("Data/2002/perfil_eleitorado_2002.txt",sep = ";", header = F)
+data2004 <- read.csv("Data/2004/perfil_eleitorado_2004.txt",sep = ";", header = F)
+data2006<- read.csv("Data/2006/perfil_eleitorado_2006.txt",sep = ";", header = F)
+data2008 <- read.csv("Data/2008/perfil_eleitorado_2008.txt",sep = ";", header = F)
+data2010 <- read.csv("Data/2010/perfil_eleitorado_2010.txt",sep = ";", header = F)
+data2012 <- read.csv("Data/2012/perfil_eleitorado_2012.txt",sep = ";", header = F)
+data2104 <- read.csv("Data/2014/perfil_eleitorado_2014.txt",sep = ";", header = F)
+
+
+
+colnames(data) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE!",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data1996) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE!",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2000) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+
+colnames(data2012) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+
+#ANO DE 1994
+data_cg <- filter(data, MUNICIPIO == "CAMPINA GRANDE")
+data_es <- filter(data, MUNICIPIO == "ESPERANCA")
+
+sum(data_cg$QTD_ELEITORES_NO_PERFIL)
+
+
+#Frequencia de eleitores por faixa etaria de idade e agrupados por sexo
+n1 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "SEXO", data = data_cg, type = "multiBarChart")
+n1
+
+####################################################################
+
+#ANO DE 1996
+data_cg1996 <- filter(data1996, MUNICIPIO == "CAMPINA GRANDE")
+sum(data_cg1996$QTD_ELEITORES_NO_PERFIL)
+
+#Frequencia de eleitores por faixa etaria de idade e agrupados por sexo
+n2 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "SEXO", data = data_cg1996, type = "multiBarChart")
+n2
+
+###################################################################
+
+
+#ANO DE 2012
+data_cg2012 <- filter(data2012, MUNICIPIO == "CAMPINA GRANDE")
+sum(data_cg2012$QTD_ELEITORES_NO_PERFIL)
+
+n3 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "SEXO", data = data_cg2012, type = "multiBarChart")
+n3
+
+n5 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "GRAU_DE_ESCOLARIDADE", data = data_cg2012, type = "multiBarChart")
+n5
+
+
+###################################################################
+
+
+#ANO DE 2000
+data_cg2000 <- filter(data2000, MUNICIPIO == "CAMPINA GRANDE")
+sum(data_cg2000$QTD_ELEITORES_NO_PERFIL)
+
+n4 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "SEXO", data = data_cg2000, type = "multiBarChart")
+n4
+
+n5 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "GRAU_DE_ESCOLARIDADE", data = data_cg2000, type = "multiBarChart")
+n5
+
+
+
+```
+
