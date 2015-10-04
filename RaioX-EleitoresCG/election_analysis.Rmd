@@ -1,0 +1,244 @@
+---
+title: "Elections"
+author: "Arthur"
+date: "02-10-2015"
+output: html_document
+---
+
+```{r}
+library(rCharts)
+library(ggplot2)
+library(dplyr)
+
+data2000 <- read.csv("Data/2000/perfil_eleitorado_2000_ensino_medio.txt",sep = ";", header = F)
+data2002 <- read.csv("Data/2002/perfil_eleitorado_2002_ensino_medio.txt",sep = ";", header = F)
+data2004 <- read.csv("Data/2004/perfil_eleitorado_2004_ensino_medio.txt",sep = ";", header = F)
+data2006<-  read.csv("Data/2006/perfil_eleitorado_2006_ensino_medio.txt",sep = ";", header = F)
+data2008 <- read.csv("Data/2008/perfil_eleitorado_2008_sem_acento.txt",sep = ";", header = F)
+data2010 <- read.csv("Data/2010/perfil_eleitorado_2010_sem_acento.txt",sep = ";", header = F)
+data2012 <- read.csv("Data/2012/perfil_eleitorado_2012_sem_acento.txt",sep = ";", header = F)
+data2014 <- read.csv("Data/2014/perfil_eleitorado_2014_sem_acento.txt",sep = ";", header = F)
+
+#ADICIONANDO NOMES DAS COLUNAS
+colnames(data2000) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2002) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2004) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2006) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2008) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2010) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2012) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+colnames(data2014) <- c("PERIODO","UF",
+"MUNICIPIO",
+"COD_MUNICIPIO_TSE",
+"NR_ZONA",
+"SEXO",
+"FAIXA_ETARIA",
+"GRAU_DE_ESCOLARIDADE",
+"QTD_ELEITORES_NO_PERFIL")
+
+#SELECIONANDO CAMPINA GRANDE
+
+data_cg2000 <- filter(data2000, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2002 <- filter(data2002, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2004 <- filter(data2004, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2006 <- filter(data2006, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2008 <- filter(data2008, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2010 <- filter(data2010, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2012 <- filter(data2012, MUNICIPIO == "CAMPINA GRANDE")
+data_cg2014 <- filter(data2014, MUNICIPIO == "CAMPINA GRANDE")
+
+###################################################################
+
+
+#DATA-FRAME ANOSxSEXO_ELEITORES
+data_anos_sexo <- data.frame(ANOS = c("2000","2000","2002","2002", "2004","2004","2006","2006","2008","2008","2010","2010","2012","2012","2014","2014"),stringsAsFactors=F)
+data_anos_sexo["SEXO"] <- NA
+
+for (i in 1:16){
+  if (i %% 2 !=0){
+    data_anos_sexo[i,"SEXO"] = "MASCULINO"
+  }
+  else data_anos_sexo[i,"SEXO"] = "FEMININO"
+}
+
+data_anos_sexo["NÚMERO"] <- NA
+
+data_anos_sexo[1,3] <-summarise(filter(data_cg2000, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[2,3] <-summarise(filter(data_cg2000, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[3,3] <-summarise(filter(data_cg2002, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[4,3] <-summarise(filter(data_cg2002, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[5,3] <-summarise(filter(data_cg2004, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[6,3] <-summarise(filter(data_cg2004, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[7,3] <-summarise(filter(data_cg2006, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[8,3] <-summarise(filter(data_cg2006, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[9,3] <-summarise(filter(data_cg2008, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[10,3] <-summarise(filter(data_cg2008, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[11,3] <-summarise(filter(data_cg2010, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[12,3] <-summarise(filter(data_cg2010, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[13,3] <-summarise(filter(data_cg2012, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[14,3] <-summarise(filter(data_cg2012, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_anos_sexo[15,3] <-summarise(filter(data_cg2014, SEXO == "MASCULINO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+data_anos_sexo[16,3] <-summarise(filter(data_cg2014, SEXO == "FEMININO"), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+#USANDO GRAFICO DE LINHA NO DATASET data_anos_sexo
+
+anos_sexoGraf <- hPlot(x = "ANOS", y = "NÚMERO", group = "SEXO", data = data_anos_sexo)
+anos_sexoGraf$yAxis(title = list(text = "SDFJSDFJ"))
+anos_sexo
+
+# n5 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "GRAU_DE_ESCOLARIDADE", data = data_cg2000, type = "multiBarChart")
+# n5
+
+############################################################
+
+#DATA-FRAME ANOSxGRAU-ESCOLARIDADE
+temp <- c()
+temp_grausEcola <- c()
+graus_escola <- levels(data_cg2008$GRAU_DE_ESCOLARIDADE)
+
+for(i in c("2000","2002","2004","2006","2008","2010","2012","2014")){
+  z <- 0
+  while(z < 9){
+    temp <- c(temp,i)
+    temp_grausEcola <- c(temp_grausEcola,levels(data_cg2008$GRAU_DE_ESCOLARIDADE)[z + 1])
+     z<-z+1
+  }
+}
+
+data_anos_grauEscola <- data.frame(ANOS = temp,stringsAsFactors=F)
+data_anos_grauEscola["GRAU_DE_ESCOLARIDADE"] <- temp_grausEcola
+data_anos_grauEscola["NÚMERO"] <- NA
+
+
+data_anos_grauEscola[1,3] <-summarise(filter(data_cg2000, GRAU_DE_ESCOLARIDADE), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
+
+data_cg_todos<- list(data_cg2000, data_cg2002, data_cg2002, data_cg2006,data_cg2008, data_cg2010, data_cg2012, data_cg2014) 
+
+i <- 1
+  for (ano in data_cg_todos){
+    for (grau in graus_escola){
+      data_anos_grauEscola[i,3] <- summarise(filter(ano, GRAU_DE_ESCOLARIDADE == grau), sum(QTD_ELEITORES_NO_PERFIL))
+      i <- i +1    
+    }
+  }
+
+#USANDO GRAFICO DE LINHA NO DATASET data_anos_grauEscola
+
+anos_grausGraf <- hPlot(x = "ANOS", y = "NÚMERO", group = "GRAU_DE_ESCOLARIDADE", data = data_anos_grauEscola)
+anos_grausGraf$yAxis(title = list(text = "SDFJSDFJ"))
+anos_graus
+
+
+
+############################################################3
+#MANIPULANDO DATA-FRAME A FIM DE CRIAR A FAIXA-ETARIA 16-17 ANOS
+
+data_cg2000_temp <- select(data_cg2000, PERIODO,FAIXA_ETARIA, QTD_ELEITORES_NO_PERFIL)
+dados_filtrados <- data.frame(PERIODO = integer(),FAIXA_ETARIA = character(), QTD_ELEITORES_NO_PERFIL= integer())
+row.names(dados_filtrados) <- NULL
+
+data_frame_final <- data.frame(PERIODO = integer(),FAIXA_ETARIA = character(), QTD_ELEITORES_NO_PERFIL= integer(), stringsAsFactors=FALSE)
+
+for (i in 1:length(data_cg_todos)){
+  dados_filtrados <- rbind(dados_filtrados,select(data_cg_todos[[i]], PERIODO,FAIXA_ETARIA, QTD_ELEITORES_NO_PERFIL))
+}
+
+for (ano in levels(as.factor(dados_filtrados$PERIODO))){
+  for (faixa in levels(dados_filtrados$FAIXA_ETARIA)){
+    if(faixa != "INV\xc1LIDA" & faixa != "INVALIDA"){
+       qtd_eleitores <- summarise(filter(dados_filtrados,PERIODO == ano, FAIXA_ETARIA == faixa),sum(QTD_ELEITORES_NO_PERFIL))
+     data_frame_final <- rbind(data_frame_final,data.frame(PERIODO = c(ano),FAIXA_ETARIA = c(faixa), QTD_ELEITORES_NO_PERFIL= qtd_eleitores,stringsAsFactors=FALSE))
+    }
+  }
+}
+
+colnames(data_frame_final)[3] <- c("NÚMERO")
+data_frame_final$NÚMERO <- as.numeric(data_frame_final$NÚMERO)
+data_frame_final$PERIODO <- gsub("201508","2014",data_frame_final$PERIODO)
+
+for (ano in levels(as.factor(data_frame_final$PERIODO))){
+  temp16 <- as.numeric(filter(data_frame_final, PERIODO == ano, FAIXA_ETARIA == "16 ANOS")[1,3])
+  temp17 <- as.numeric(filter(data_frame_final, PERIODO == ano, FAIXA_ETARIA == "17 ANOS")[1,3])  
+  result <- temp16 + temp17
+  data_frame_final[data_frame_final$PERIODO == ano & data_frame_final$FAIXA_ETARIA=="17 ANOS",][3] <- result
+  data_frame_final[data_frame_final$PERIODO == ano & data_frame_final$FAIXA_ETARIA=="17 ANOS",][2] <- "16 a 17 ANOS"
+}
+
+data_frame_final <- data_frame_final[data_frame_final$FAIXA_ETARIA != "16 ANOS",]
+data_frame_final$PERIODO <- as.factor(data_frame_final$PERIODO)
+
+
+#CRIANDO O GRAFICO DE LINHA E UM HISTOGRAMA PARA AS FAIXAS DE IDADE USANDO O DATAFRAME data_frame_final
+anos_faixaEtaria_linha <- hPlot(x = "PERIODO", y = "NÚMERO", group = "FAIXA_ETARIA", data = data_frame_final)
+anos_faixaEtaria_linha
+
+anos_faixaEtaria_hist <- rPlot(NÚMERO ~ FAIXA_ETARIA, data = data_frame_final, type = "bar",list(orderRule = "FAIXA_ETARIA"),barGap = 0)
+anos_faixaEtaria_hist
+
+
+
+```
+
