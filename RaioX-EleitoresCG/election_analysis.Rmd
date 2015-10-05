@@ -146,8 +146,12 @@ data_anos_sexo[16,3] <-summarise(filter(data_cg2014, SEXO == "FEMININO"), sum(QT
 #USANDO GRAFICO DE LINHA NO DATASET data_anos_sexo
 
 anos_sexoGraf <- hPlot(x = "ANOS", y = "NÚMERO", group = "SEXO", data = data_anos_sexo)
-anos_sexoGraf$yAxis(title = list(text = "SDFJSDFJ"))
-anos_sexo
+anos_sexoGraf
+anos_sexoGraf$save("/home/arthur/Desktop/TEMP/anos_sexoLinha.html", cdn = TRUE)
+
+anos_sexoHist <- dPlot(x = "SEXO", y = "NÚMERO", data = filter(data_anos_sexo, ANOS == 2014), type = "bar")
+anos_sexoHist
+anos_sexoHist$save("/home/arthur/Desktop/TEMP/anos_sexoHist.html" , cdn = TRUE)
 
 # n5 <- nPlot(QTD_ELEITORES_NO_PERFIL ~ FAIXA_ETARIA, group = "GRAU_DE_ESCOLARIDADE", data = data_cg2000, type = "multiBarChart")
 # n5
@@ -172,9 +176,6 @@ data_anos_grauEscola <- data.frame(ANOS = temp,stringsAsFactors=F)
 data_anos_grauEscola["GRAU_DE_ESCOLARIDADE"] <- temp_grausEcola
 data_anos_grauEscola["NÚMERO"] <- NA
 
-
-data_anos_grauEscola[1,3] <-summarise(filter(data_cg2000, GRAU_DE_ESCOLARIDADE), sum(QTD_ELEITORES_NO_PERFIL))[1,1]
-
 data_cg_todos<- list(data_cg2000, data_cg2002, data_cg2002, data_cg2006,data_cg2008, data_cg2010, data_cg2012, data_cg2014) 
 
 i <- 1
@@ -188,10 +189,12 @@ i <- 1
 #USANDO GRAFICO DE LINHA NO DATASET data_anos_grauEscola
 
 anos_grausGraf <- hPlot(x = "ANOS", y = "NÚMERO", group = "GRAU_DE_ESCOLARIDADE", data = data_anos_grauEscola)
-anos_grausGraf$yAxis(title = list(text = "SDFJSDFJ"))
-anos_graus
+anos_grausGraf
+anos_grausGraf$save("/home/arthur/Desktop/TEMP/anos_grausEscolaLinha.html" , cdn = TRUE)
 
-
+anos_grausHist <- rPlot(x = "GRAU_DE_ESCOLARIDADE", y = "NÚMERO", data = filter(data_anos_grauEscola, ANOS == 2014,!grepl("NAO INFORMADO",GRAU_DE_ESCOLARIDADE)),type = "bar")
+anos_grausHist
+anos_grausHist$save("/home/arthur/Desktop/TEMP/anos_grausEscolaHist.html" , cdn = TRUE)
 
 ############################################################3
 #MANIPULANDO DATA-FRAME A FIM DE CRIAR A FAIXA-ETARIA 16-17 ANOS
@@ -234,9 +237,11 @@ data_frame_final$PERIODO <- as.factor(data_frame_final$PERIODO)
 #CRIANDO O GRAFICO DE LINHA E UM HISTOGRAMA PARA AS FAIXAS DE IDADE USANDO O DATAFRAME data_frame_final
 anos_faixaEtaria_linha <- hPlot(x = "PERIODO", y = "NÚMERO", group = "FAIXA_ETARIA", data = data_frame_final)
 anos_faixaEtaria_linha
+anos_faixaEtaria_linha$save("/home/arthur/Desktop/TEMP/anos_faixaEtaria_linha.html" , cdn = TRUE)
 
 anos_faixaEtaria_hist <- rPlot(NÚMERO ~ FAIXA_ETARIA, data = data_frame_final, type = "bar",list(orderRule = "FAIXA_ETARIA"),barGap = 0)
 anos_faixaEtaria_hist
+anos_faixaEtaria_hist$save("/home/arthur/Desktop/TEMP/anos_faixaEtaria_hist.html" , cdn = TRUE)
 
 
 
