@@ -7,11 +7,10 @@ This project makes a data analysis about the profile of voters from Campina Gran
 The data was obtained from the http://dados.gov.br/ website which is a tool made by the brazilian government to gather and find all the public information easily. It has a lof of different datasets that can be downloaded and analyzed.
 
 #Tools
-    Below, you can see the programming languages and main libraries used:
   
 1. **Programming Languages:** 
     * R and Python 
-2. **Main Libraries:**
+2. **Main Libraries used:**
     * [Dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) - Manipulation of the data
     * [rCharts](http://rcharts.io/) - Creation of the interactive charts
 
