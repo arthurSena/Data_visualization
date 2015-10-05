@@ -9,18 +9,18 @@ The data was obtained from the http://dados.gov.br/ website which is a tool made
 #Tools
     Below, you can see the programming languages and main libraries used:
   
-###Languages 
-    R and Python 
-###Main Libraries
-    Dplyr - https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html - Manipulation of the data
-    rCharts - http://rcharts.io/ - Creation of the interactive charts
+1. **Programming Languages:** 
+    * R and Python 
+2. **Main Libraries:**
+    * [Dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) - Manipulation of the data
+    * [rCharts](http://rcharts.io/) - Creation of the interactive charts
 
 #Scripts
 All the code used in this analysis is in the files described below:
 
-###election_analysis.Rmd
-        This is the main script of the project which is written in R. It has all the code to make the charts.
-###add_ensinoMedio_categ.py: 
-        This is a python script which modifies the variable LEVEL OF EDUCATION in the original dataset in order to update this category and keep the data consistency.
-### format.py :
+1. **election_analysis.Rmd**
+        It is the main script of the project which is written in R. It has all the code to make the charts.
+2. **add_ensinoMedio_categ.py:** 
+        It is a python script which modifies the variable LEVEL OF EDUCATION in the original dataset in order to update this category and keep the data consistency.
+3.  **format.py :**
         It is another python script that removes accented letters from the dataset to make it simpler to analyse.
