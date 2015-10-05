@@ -31,6 +31,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+     <style>
+    .rChart {
+      display: block;
+      margin-left: auto; 
+      margin-right: auto;
+      width: 150%;
+      height: 50%;
+    }  
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -52,7 +62,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#services">Resultados</a>
+                        <a class="page-scroll" href="#resultados">Resultados</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>
@@ -86,13 +96,13 @@
                     <p class="text-faded">
                         Este projeto teve como intuito realizar uma análise de dados à respeito do perfil do eleitor paraibano nas últimas eleições e como o mesmo mudou ao longos dos anos fazendo comparações desde das eleiçoes de 2000 até a última eleição. As variáveis consideradas para tal análise foram: SEXO, FAIXA-ETÁRIA e NÍVEL DE ESCOLARIDADE.
                     </p>
-                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
+                    <a href="#resultados" class="btn btn-default btn-xl page-scroll">Resultados</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services">
+    <section id="resultados">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -106,143 +116,58 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paragraph  wow bounceIn text-primary"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-bar-chart wow bounceIn text-primary" data-wow-delay=".1s"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <!-- <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
+                        <i class="fa fa-4x fa-paragraph  wow bounceIn text-primary"></i>
+                        <h3>Ano 2014</h3>
+                        <div id = 'chartaaf6dec703f' class = 'rChart dimple'></div>    
                     </div>
-                </div> -->
+                </div>
+                <div class="col-lg-9 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-bar-chart wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Visualização ao longo dos anos</h3>
+                        <div id = 'anos_sexoLinha' class = 'rChart highcharts' style="margin-top:10%;"></div>    
+                    </div>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paragraph  wow bounceIn text-primary"></i>
+                        <h3>Ano 2014</h3>
+                        <div id = 'chartaaf7ba3c19e' class = 'rChart polycharts' style="width:100%;"></div>    
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-bar-chart wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Visualização ao longo dos anos</h3>
+                        <div id = 'chartaaf32a18885' class = 'rChart highcharts'></div> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paragraph  wow bounceIn text-primary"></i>
+                        <h3>Ano 2014</h3>
+                         <div id = 'chartaaf7a9fc1cc' class = 'rChart polycharts'></div>       
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-bar-chart wow bounceIn text-primary" data-wow-delay=".1s"></i>
+                        <h3>Visualização ao longo dos anos</h3>
+                         <div id = 'chartaaf76d4d68a' class = 'rChart highcharts'></div>    
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
-
-    <!-- <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/1.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/2.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/3.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/4.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/5.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/6.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
-            </div>
-        </div>
-    </aside> -->
 
     <section id="contact">
         <div class="container">
@@ -277,6 +202,23 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/creative.js"></script>
+
+     <script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='http://code.highcharts.com/highcharts.js' type='text/javascript'></script>
+    <script src='http://code.highcharts.com/highcharts-more.js' type='text/javascript'></script>
+    <script src='http://code.highcharts.com/modules/exporting.js' type='text/javascript'></script>
+
+    <script src='http://ramnathv.github.io/rCharts/libraries/widgets/polycharts/js/polychart2.standalone.js' type='text/javascript'></script>
+
+    <script src='http://d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='http://dimplejs.org/dist/dimple.v2.1.0.min.js' type='text/javascript'></script>
+
+     <script type='text/javascript' src="js/anos_sexoLinha.js"></script>
+      <script type='text/javascript' src="js/anos_sexoHist.js"></script>
+      <script type='text/javascript' src="js/anos_grausEscolaHist.js"></script>
+    <script type='text/javascript' src="js/anos_grausEscolaLinha.js"></script>
+    <script type='text/javascript' src="js/anos_faixaEtaria_hist.js"></script>
+        <script type='text/javascript' src="js/anos_faixaEtaria_linha.js"></script>
 
 </body>
 
